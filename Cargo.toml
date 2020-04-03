@@ -3,6 +3,12 @@ name = "discombobulate"
 version = "0.1.0"
 authors = ["Jon Moroney <darakian@gmail.com>"]
 edition = "2018"
+description = "Compare and contrast directories"
+license = "AGPL 3.0"
+homepage = "https://github.com/darakian/ddh"
+repository = "https://github.com/darakian/ddh"
+documentation = "https://docs.rs/ddh"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
