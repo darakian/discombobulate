@@ -8,6 +8,6 @@ pub struct Metadata{
 pub fn discombobulate<F: AsRef<Path>>(
     file: F,
     chunk_len: u64,
-    transform: fn([u8]) -> (Option<[u8]>, Option<Metadata>)) -> (){
+    transform: fn(Box<[u8]>) -> (Option<Box<[u8]>>, Option<Metadata>)) -> (){
 
 }
