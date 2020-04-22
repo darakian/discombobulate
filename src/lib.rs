@@ -1,6 +1,6 @@
 use std::path::Path;
 
-#![non_exhaustive]
+#[non_exhaustive]
 pub Struct Metadata{
 
 }
