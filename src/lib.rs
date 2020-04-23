@@ -12,7 +12,10 @@ pub fn discombobulate<F: AsRef<Path>>(
 
 }
 
-
 pub fn identity_transform(input: Box<[u8]>) -> (Option<Box<[u8]>>, Option<Metadata>){
     return (Some(input), None)
+}
+
+fn flay(<F: AsRef<Path>>(file: F, chunk_len: u64) -> (){
+    
 }
