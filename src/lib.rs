@@ -11,3 +11,8 @@ pub fn discombobulate<F: AsRef<Path>>(
     transform: fn(Box<[u8]>) -> (Option<Box<[u8]>>, Option<Metadata>)) -> (){
 
 }
+
+
+pub fn identity_transform(input: Box<[u8]>) -> (Option<Box<[u8]>>, Option<Metadata>){
+    return (Some(input), None)
+}
