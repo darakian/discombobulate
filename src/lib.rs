@@ -21,13 +21,12 @@ impl ChunkIter{
 }
 
 impl Iterator for ChunkIter{
-    type Item = Box<[u8]>;
-    fn next(&mut self) -> Option<Box<[u8]>>{
+    type Item = Result<Box<[u8]>, Error>;
+    fn next(&mut self) -> Option<Result<Box<[u8]>, Error>>{
         match self.f.read(&mut self.buffer){
-            Ok(_i) => Some(Box::new(self.buffer.clone())),
-            Err(_e) => None
+            Ok(_i) => Some(Ok(Box::new(self.buffer.clone()))),
+            Err(e) => Some(Err(e))
         }
-
     }
 }
 
@@ -42,7 +41,7 @@ pub fn identity_transform(input: Box<[u8]>) -> (Option<Box<[u8]>>, Option<Metada
     return (Some(input), None)
 }
 
-fn flay<F: AsRef<Path>>(file: F, chunk_len: u64) -> Result<Box<dyn Iterator<Item = Box<[u8]>>>, Error>{
+fn flay<F: AsRef<Path>>(file: F, chunk_len: u64) -> Result<Box<dyn Iterator<Item = Result<Box<[u8]>, Error>>>, Error>{
     match File::open(file){
         Err(e) => {return Err(e)}
         Ok(mut f) => {
