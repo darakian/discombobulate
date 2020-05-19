@@ -2,6 +2,7 @@ use std::path::Path;
 use std::fs::File;
 use std::io::{Read, self};
 
+// Maximum size for a u8 array is 4MB
 const CHUNK_SIZE: usize = 4 * 1024 *1024;
 
 #[non_exhaustive]
@@ -30,18 +31,7 @@ impl Iterator for ChunkIter{
     }
 }
 
-pub fn discombobulate<F: AsRef<Path>>(
-    file: F,
-    chunk_len: u64,
-    transform: fn(Box<[u8]>) -> (Option<Box<[u8]>>, Option<Metadata>)) -> (){
-
-}
-
-pub fn identity_transform(input: Box<[u8]>) -> (Option<Box<[u8]>>, Option<Metadata>){
-    return (Some(input), None)
-}
-
-fn flay<F: AsRef<Path>>(file: F, chunk_len: u64) -> Result<Box<dyn Iterator<Item = Result<Box<[u8]>, io::Error>>>, io::Error>{
+fn discombobulate<F: AsRef<Path>>(file: F, chunk_len: u64) -> Result<Box<dyn Iterator<Item = Result<Box<[u8]>, io::Error>>>, io::Error>{
     match File::open(file){
         Err(e) => {return Err(e)}
         Ok(mut f) => {
