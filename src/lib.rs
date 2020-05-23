@@ -2,8 +2,8 @@ use std::path::Path;
 use std::fs::File;
 use std::io::{Read, self};
 
-// Maximum size for a u8 array is 4MB
-const CHUNK_SIZE: usize = 1 * 1024 *1024;
+// Use 1MB buffer for reads
+const CHUNK_SIZE: usize = 1024 *1024;
 
 #[non_exhaustive]
 pub struct Metadata{
@@ -36,7 +36,7 @@ impl Iterator for ChunkIter{
     }
 }
 
-fn discombobulate<F: AsRef<Path>>(file: F, chunk_len: u64) -> Result<Box<dyn Iterator<Item = Result<Vec<u8>, io::Error>>>, io::Error>{
+pub fn discombobulate<F: AsRef<Path>>(file: F, chunk_len: u64) -> Result<Box<dyn Iterator<Item = Result<Vec<u8>, io::Error>>>, io::Error>{
     match File::open(file){
         Err(e) => {return Err(e)}
         Ok(mut f) => {
