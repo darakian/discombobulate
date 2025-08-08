@@ -1,6 +1,6 @@
 [package]
 name = "discombobulate"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Jon Moroney <darakian@gmail.com>"]
 edition = "2018"
 description = "Compare and contrast directories"
